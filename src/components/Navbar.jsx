@@ -26,7 +26,7 @@ const Navbar = () => {
     return (
         <nav className="w-full sticky top-0 flex md:justify-center justify-between items-center p-4 bg-[#87e25d] z-50">
             <div className="md:flex-[0.5] flex-initial justify-center items-center">
-                <img src={logo} alt="" className='w-[150px] cursor-pointer' />
+                <Link to="/"><img src={logo} alt="" className='w-[150px] cursor-pointer' /></Link>
             </div>
             <ul className="text-black md:flex hidden list-none flex-row justify-between items-center flex-initial">
                 <NavbarItem title="Home" path="/" />
