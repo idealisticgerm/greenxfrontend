@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import gsap from 'gsap'
+// import gsap from 'gsap'
+import { motion } from 'framer-motion';
 
 
 const Crop = (props) => {
@@ -59,12 +60,14 @@ const Crop = (props) => {
                     <p className="mb-3 font-normal text-black-700 dark:text-black-300"><span className='text-black text-xl font-semibold'>Suitable Regions: </span>{props.SuitableRegions}</p>
                     <p className="mb-3 font-normal text-black-700 dark:text-black-300"><span className='text-black text-xl font-semibold'>Preferred Soil Type: </span>{props.PreferredSoilType}</p>
 
-                    <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black bg-[#73e329] rounded-lg hover:bg-[#7cca48] focus:ring-4 focus:outline-none  cursor-pointer" onClick={toggleModal} >
+                    <motion.button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black bg-[#73e329] rounded-lg hover:bg-[#7cca48] focus:ring-4 focus:outline-none  cursor-pointer outline-none" onClick={toggleModal}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }} >
                         Read more
                         <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
-                    </button>
+                    </motion.button>
                 </div>
 
 
