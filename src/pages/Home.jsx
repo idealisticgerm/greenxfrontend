@@ -2,13 +2,17 @@ import React from 'react'
 import { useState } from 'react'
 import Explore from './Explore'
 import Disease from '../components/Disease'
+import { useAuth } from "../context/auth";
+
 
 
 const Home = () => {
+  const { auth } = useAuth();
 
 
   return (
     <div className='flex flex-col gap-y-14 '>
+
 
       <div className='w-full '>
         {/* <img className='h-[100vh] w-full' src="https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1638892233/EducationHub/photos/crops-growing-in-thailand.jpg" alt="" /> */}

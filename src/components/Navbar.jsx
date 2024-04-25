@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
+import { useAuth } from '../context/auth';
 
 const NavbarItem = ({ title, classProps, path, id }) => {
     const handleClick = (event) => {
@@ -22,6 +23,17 @@ const NavbarItem = ({ title, classProps, path, id }) => {
 const Navbar = () => {
 
     const [toggleMenu, setToggleMenu] = useState(false)
+    const { auth, setAuth } = useAuth()
+
+    const handleLogout = () => {
+        setAuth({
+            ...auth,
+            user: null,
+            token: "",
+        });
+        localStorage.removeItem("auth");
+        toast.success("Logout Successfully");
+    };
 
     return (
         <nav className="w-full sticky top-0 flex md:justify-center justify-between items-center p-4 bg-[#87e25d] z-50">
@@ -36,9 +48,19 @@ const Navbar = () => {
                 {/* <NavbarItem title="News" path="/news" /> */}
                 {/* <NavbarItem title="About us" path="/about" /> */}
 
-                <li className='bg-[#4b8623] text-white py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#b3e568] hover:text-black'>
-                    Login
-                </li>
+                {!auth?.user ? (
+                                    <>
+                                        <Link to="/login" className='bg-[#4b8623] py-2 px-7 mx-4 my-5 rounded-full cursor-pointer hover:bg-[#b3e568] hover:text-black'>
+                                            Login
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link to="/login" className='bg-[#4b8623] py-2 px-7 mx-4 my-5 rounded-full cursor-pointer hover:bg-[#b3e568] hover:text-black' onClick={handleLogout}>
+                                            Logout
+                                        </Link>
+                                    </>
+                                )}
             </ul>
 
             <div className="flex relative">
@@ -59,9 +81,22 @@ const Navbar = () => {
                                 <NavbarItem title="Leaf Disease" path="http://localhost:8501" classProps={"my-2"} />
                                 <NavbarItem title="Statistics" path="/statistics" classProps={"my-2"} />
 
-                                <li className='bg-[#4b8623] py-2 px-7 mx-4 my-5 rounded-full cursor-pointer hover:bg-[#b3e568] hover:text-black'>
-                                    Login
-                                </li>
+
+
+
+                                {!auth?.user ? (
+                                    <>
+                                        <Link to="/login" className='bg-[#4b8623] py-2 px-7 mx-4 my-5 rounded-full cursor-pointer hover:bg-[#b3e568] hover:text-black'>
+                                            Login
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link to="/login" className='bg-[#4b8623] py-2 px-7 mx-4 my-5 rounded-full cursor-pointer hover:bg-[#b3e568] hover:text-black' onClick={handleLogout}>
+                                            Logout
+                                        </Link>
+                                    </>
+                                )}
                             </div>
                         </ul>
                     )
